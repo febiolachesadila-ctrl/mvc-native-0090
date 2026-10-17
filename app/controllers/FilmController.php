@@ -111,4 +111,31 @@ public function update()
     exit;
 }
 
+public function delete()
+{
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        http_response_code(405);
+        exit('Metode tidak diizinkan.');
+    }
+
+    $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+
+    if (!$id || $id < 1) {
+        exit('ID film tidak valid.');
+    }
+
+    if (!$this->model->getById($id)) {
+        http_response_code(404);
+        exit('Data film tidak ditemukan.');
+    }
+
+    if ($this->model->delete($id)) {
+        header('Location: index.php?page=film&status=delete_success');
+        exit;
+    }
+
+    header('Location: index.php?page=film&status=delete_error');
+    exit;
+}
+
 }

@@ -63,6 +63,10 @@ if ($page === 'mahasiswa') {
         case 'update':
             $controller->update();
             break;
+        
+        case 'delete':
+            $controller->delete();
+            break;
 
         default:
             http_response_code(404);

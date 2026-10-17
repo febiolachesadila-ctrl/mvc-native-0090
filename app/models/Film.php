@@ -62,4 +62,14 @@ public function update($id, $judul, $genre, $durasi, $tahun_rilis)
     ]);
 }
 
+public function delete($id)
+{
+    $sql = "DELETE FROM film WHERE id = :id";
+    $stmt = $this->conn->prepare($sql);
+
+    return $stmt->execute([
+        ':id' => $id
+    ]);
+}
+
 }

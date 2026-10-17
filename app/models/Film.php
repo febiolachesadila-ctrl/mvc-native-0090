@@ -32,4 +32,34 @@ class Film
         ':tahun_rilis' => $tahun_rilis
     ]);
 }
+
+public function getById($id)
+{
+    $sql = "SELECT * FROM film WHERE id = :id";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute([':id' => $id]);
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+public function update($id, $judul, $genre, $durasi, $tahun_rilis)
+{
+    $sql = "UPDATE film
+            SET judul = :judul,
+                genre = :genre,
+                durasi = :durasi,
+                tahun_rilis = :tahun_rilis
+            WHERE id = :id";
+
+    $stmt = $this->conn->prepare($sql);
+
+    return $stmt->execute([
+        ':id' => $id,
+        ':judul' => $judul,
+        ':genre' => $genre,
+        ':durasi' => $durasi,
+        ':tahun_rilis' => $tahun_rilis
+    ]);
+}
+
 }

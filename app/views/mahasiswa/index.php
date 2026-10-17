@@ -1,6 +1,16 @@
 
 <h2>Data Mahasiswa</h2>
 
+<?php
+$status = $_GET['status'] ?? '';
+
+if ($status === 'create_success') {
+    echo '<p style="color: green;">Data mahasiswa berhasil ditambahkan!</p>';
+} elseif ($status === 'create_error') {
+    echo '<p style="color: red;">Data mahasiswa gagal ditambahkan!</p>';
+}
+?>
+
 <a href="index.php?page=mahasiswa&action=create">+ Tambah Mahasiswa</a>
 
 <br><br>

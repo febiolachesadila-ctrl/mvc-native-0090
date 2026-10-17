@@ -36,9 +36,12 @@ class MahasiswaController
             die('Semua kolom wajib diisi dengan benar.');
         }
 
-        $this->model->insert($nim, $nama, $prodi);
+        if ($this->model->insert($nim, $nama, $prodi)) {
+            header('Location: index.php?page=mahasiswa&status=create_success');
+        } else {
+            header('Location: index.php?page=mahasiswa&status=create_error');
+        }
 
-        header('Location: index.php?page=mahasiswa');
         exit;
     }
 
